@@ -1,14 +1,20 @@
-import Sidebar from './components/Sidebar';
-import Overview from './components/Overview';
-import Dashboard from './components/Dashboard';
-import Chat from './components/Chat';
-import Gallery from './components/Gallery';
+import Sidebar  from './pages/Sidebar'
+import Overview from './pages/Overview';
+import Dashboard from './pages/Dashboard';
+import Chat from './pages/Chat';
+import Gallery from './pages/Gallery';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <>  
       <Sidebar />
-      <Gallery/>
+      <Routes>
+        <Route path="/" element={<Overview />} />
+        <Route path="/management" element={<Dashboard />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/gallery" element={<Gallery />} />
+      </Routes>
     </>
   );
 }

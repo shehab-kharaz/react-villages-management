@@ -1,5 +1,6 @@
 import "../styles/sidebar.css"
 import AdminImage from '../images/admin-image.jpeg';
+import { Link } from "react-router-dom";
 
 function Sidebar(){
   return (
@@ -13,19 +14,19 @@ function Sidebar(){
         <ul>
           <li>
             <span className="icon">&#x1f4ca;</span>
-            <a href="/home.html">Overview</a>
+            <Link to="/">Overview</Link>
           </li>
           <li>
             <span className="icon">&#x1f4ca;</span>
-            <a href="/src/html/village-management.html">Village Management</a>
+            <Link to="/management">Management</Link>
           </li>
           <li>
             <span className="icon">&#x1f4ca;</span>
-            <a href="/src/html/chat.html">Chat</a>
+            <Link to="/chat">Chat</Link>
           </li>
           <li>
             <span className="icon">&#x1f4ca;</span>
-            <a href="/src/html/gallery.html">Gallery</a>
+            <Link to="/gallery">Gallery</Link>
           </li>
         </ul>
       </nav>
