@@ -1,40 +1,43 @@
 import "../styles/sidebar.css"
+import AdminImage from '../images/admin-image.jpeg';
 
 function Sidebar(){
   return (
-   <div className="aside"> 
+   <aside> 
       <h2>
         <span id="toggleButton">&#8801;</span>
         <span id="heading">Dashboard</span>
       </h2>
 
-      <ul>
-        <li>
-          <span className="icon">&#x1f4ca;</span>
-          <a>Overview</a>
-        </li>
-        <li>
-          <span className="icon">&#x1f4ca;</span>
-          <a href="">Village Management</a>
-        </li>
-        <li>
-          <span className="icon">&#x1f4ca;</span>
-          <a href="">Chat</a>
-        </li>
-        <li>
-          <span className="icon">&#x1f4ca;</span>
-          <a href="">Gallery</a>
-        </li>
-      </ul>
+      <nav>
+        <ul>
+          <li>
+            <span className="icon">&#x1f4ca;</span>
+            <a href="/home.html">Overview</a>
+          </li>
+          <li>
+            <span className="icon">&#x1f4ca;</span>
+            <a href="/src/html/village-management.html">Village Management</a>
+          </li>
+          <li>
+            <span className="icon">&#x1f4ca;</span>
+            <a href="/src/html/chat.html">Chat</a>
+          </li>
+          <li>
+            <span className="icon">&#x1f4ca;</span>
+            <a href="/src/html/gallery.html">Gallery</a>
+          </li>
+        </ul>
+      </nav>
 
       <div>
         <figure>
-          <img src="" alt="admin-image" />
+          <img src={AdminImage}alt="admin-image" />
           <figcaption>Admin name</figcaption>
         </figure>
         <button>Logout</button>
       </div>
-   </div>
+   </aside>
   )
 }
 

@@ -1,23 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  color: #e4e7eb;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #1a202c;
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  grid-template-rows: 100%;
-  grid-template-areas: "aside main";
-  transition: grid-template-columns 400ms ease-out;
-}
-body.side-collapsed {
-  grid-template-columns: 75px 1fr;
-}
-.aside {
+aside {
   grid-area: aside;
   background-color: #1f2937;
   height: 100%;
@@ -27,62 +8,61 @@ body.side-collapsed {
   flex-direction: column;
   transition: width 400ms ease-out;
 }
-.aside.collapsed {
-  align-items: center;
-  width: 75px;
-}
-.aside.collapsed #heading,
-.aside.collapsed ul li a,
-.aside.collapsed div figure figcaption,
-.aside.collapsed div button {
-  display: none;
-}
-.aside h2 {
+aside h2 {
   font-size: 2rem;
   padding: 1rem;
+  display: flex;
+  align-items: center;
 }
-.aside h2 #toggleButton {
+aside h2 #toggleButton {
   cursor: pointer;
   user-select: none;
+  margin-right: 0.7rem;
+  font-size: 2.6rem;
 }
-.aside ul {
+aside nav {
   margin-bottom: auto;
   list-style: none;
 }
-.aside ul li {
+aside nav ul li {
   padding: 1rem 1.6rem;
+  list-style: none;
 }
-.aside ul li a {
+aside nav ul li span {
+  margin-right: 0.7rem;
+}
+aside nav ul li a {
   text-decoration: none;
+  color: inherit;
 }
-.aside ul li:hover {
+aside nav ul li:hover {
   background-color: #2d3748;
   cursor: pointer;
 }
-.aside div {
+body aside div {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
 }
-.aside div figure {
+body aside div figure {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.aside div figure img {
+body aside div figure img {
   width: 40px;
   height: 40px;
   object-fit: cover;
   border-radius: 50%;
 }
-.aside div button {
+body aside div button {
   border: none;
   background-color: #1f2937;
   font-size: 1rem;
   color: red;
 }
-.aside div button:hover {
+body aside div button:hover {
   cursor: pointer;
   color: rgb(230, 52, 52);
 }
@@ -91,15 +71,10 @@ body main {
   padding: 1rem;
 }
 @media (max-width: 768px) {
-  body {
-    grid-template-columns: 75px 1fr;
-    grid-template-areas: "sidebar main";
-  }
-  body aside.collapsed #heading,
-  body aside.collapsed ul li a,
-  body aside.collapsed div figure figcaption,
-  body aside.collapsed div button {
+  aside #heading,
+  aside ul li a,
+  aside div figure figcaption,
+  aside div button {
     display: none;
   }
 }
-

@@ -1,0 +1,70 @@
+main {
+  display: grid;
+  grid-template-rows: 1fr 10fr 4fr auto;
+  gap: 1rem;
+  grid-template-areas: "heading" "map" "statistics" "charts";
+}
+main h1 {
+  grid-area: heading;
+}
+main .map-container {
+  height: 400px;
+  background-color: #1f2937;
+  border-radius: 15px;
+}
+main .info-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+main .info-container .info-box {
+  background-color: #1f2937;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+main .info-container .info-box h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+main .info-container .info-box p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+main .info-container .info-box span {
+  color: #9fa6b2;
+}
+main .charts-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: 100%;
+}
+main .charts-container .chart-box {
+  background-color: #1f2937;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(50% - 1rem);
+}
+main .charts-container .chart-box canvas {
+  width: 90%;
+  height: 300px;
+  max-width: 100%;
+  max-height: 500px;
+}
+main .charts-container .chart-box h2 {
+  color: #e4e7eb;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+main .charts-container .chart-box:nth-child(3) {
+  flex: 1 1 100%;
+}
