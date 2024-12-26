@@ -7,6 +7,7 @@ main button {
   font-weight: bold;
   transition: background-color 150ms;
 }
+
 main button:hover {
   cursor: pointer;
   background-color: #1f2937;
@@ -55,6 +56,10 @@ main section select:focus {
 main section .villages-sort {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+main section .villages-sort div {
+  display: flex;
   align-items: center;
 }
 main section #village-list-container {
@@ -176,3 +181,6 @@ main section .buttons-container {
   display: block;
 }
 
+#add-new-village-btn {
+  background-color: red;
+}

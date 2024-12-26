@@ -52,8 +52,6 @@ main .charts-container .chart-box {
   padding: 1rem;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   flex: 1 1 calc(50% - 1rem);
-}
-main .charts-container .chart-box canvas {
   width: 90%;
   height: 300px;
   max-width: 100%;

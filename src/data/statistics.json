@@ -1,0 +1,68 @@
+{
+  "totalVillages": 198,
+  "totalUrbanAreas": 25,
+  "totalPopulation": 12000,
+  "averageLandAreaInSqKm": 35.7,
+  "ageDistribution": [
+    {
+      "name": "0-18 years",
+      "value": 4
+    },
+    {
+      "name": "19-35 years",
+      "value": 20
+    },
+    {
+      "name": "36-50 years",
+      "value": 30
+    },
+    {
+      "name": "51-65 years",
+      "value": 40
+    },
+    {
+      "name": "65+ years",
+      "value": 6
+    }
+  ],
+  "genderRatios": [
+    {
+      "name": "male",
+      "value": 48.5
+    },
+    {
+      "name": "female",
+      "value": 51.5
+    }
+  ],
+  "populationDistribution": [
+    {
+      "name": "Village 1",
+      "population": 100
+    },
+    {
+      "name": "Village 2",
+      "population": 150
+    },
+    {
+      "name": "Village 3",
+      "population": 200
+    },
+    {
+      "name": "Village 4",
+      "population": 300
+    },
+    {
+      "name": "Village 5",
+      "population": 350
+    },
+    {
+      "name": "Village 6",
+      "population": 400
+    },
+    {
+      "name": "Village 7",
+      "population": 450
+    }
+  ]
+}
