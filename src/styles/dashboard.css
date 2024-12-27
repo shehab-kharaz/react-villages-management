@@ -14,7 +14,6 @@ main button:hover {
 }
 main .add-new-village-btn {
   width: 10rem;
-  margin-bottom: 1rem;
 }
 main section {
   display: flex;
@@ -75,6 +74,7 @@ main section .village-item {
   justify-content: space-between;
   align-items: center;
 }
+
 main section .buttons-container {
   display: flex;
   gap: 0.3rem;

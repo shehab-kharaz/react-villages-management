@@ -1,12 +1,22 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend} from 'recharts';
 const COLORS = ['#a74c65', '#2f71a3', '#a58c4d', '#3c8489', '#684eaf'];
 
+
+
+
+
 function PieChartComponent({chartData=[]})  {
+
+  const transformedData = Object.keys(chartData).map((key) => ({
+    name: key.replace(/_/g, ' ').toUpperCase(),  
+    value: chartData[key],
+  }));
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <PieChart width={400} height={400}>
         <Pie
-          data={chartData}
+          data={transformedData}
           cx="50%"
           cy="50%"
           labelLine={false}
@@ -14,7 +24,7 @@ function PieChartComponent({chartData=[]})  {
           fill="#8884d8"
           dataKey="value"
         >
-          {chartData.map((entry, index) => (
+          {transformedData.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>

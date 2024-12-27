@@ -1,15 +1,11 @@
-main {
-  grid-area: main;
-}
+
 main button {
   background-color: #718096;
-  width: 10rem;
   color: #e4e7eb;
   padding: 0.6rem 1rem;
   border: none;
   border-radius: 0.4rem;
   font-weight: bold;
-  margin-bottom: 1rem;
   transition: background-color 150ms;
 }
 main button:hover {
@@ -19,7 +15,7 @@ main button:hover {
 main div {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.2rem;
+  gap: 0.5rem;
 }
 main div figure {
   display: flex;

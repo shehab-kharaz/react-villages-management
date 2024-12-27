@@ -1,4 +1,4 @@
-import Sidebar  from './pages/Sidebar'
+import Sidebar from './components/Sidebar';
 import Overview from './pages/Overview';
 import Dashboard from './pages/Dashboard';
 import Chat from './pages/Chat';

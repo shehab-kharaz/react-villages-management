@@ -1,3 +1,3 @@
 /node_modules
-
-
+/src/components/AddVillageModal.js
+src/pages/Dashboard.js
