@@ -1,15 +1,12 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend} from 'recharts';
 const COLORS = ['#a74c65', '#2f71a3', '#a58c4d', '#3c8489', '#684eaf'];
 
-
-
-
-
 function PieChartComponent({chartData=[]})  {
-
-  const transformedData = Object.keys(chartData).map((key) => ({
-    name: key.replace(/_/g, ' ').toUpperCase(),  
-    value: chartData[key],
+  const transformedData = Object.entries(chartData)
+  .slice(1) 
+  .map(([key, value]) => ({
+    name: key.replace(/_/g, '-').toUpperCase(),
+    value: value,
   }));
 
   return (

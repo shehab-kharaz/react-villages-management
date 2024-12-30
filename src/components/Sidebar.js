@@ -33,7 +33,7 @@ function Sidebar(){
 
       <div>
         <figure>
-          <img src={AdminImage}alt="admin-image" />
+          <img src={AdminImage} alt="admin-image" />
           <figcaption>Admin name</figcaption>
         </figure>
         <button>Logout</button>
