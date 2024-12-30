@@ -1,40 +1,44 @@
 import "../styles/sidebar.css"
+import AdminImage from '../images/admin-image.jpeg';
+import { Link } from "react-router-dom";
 
 function Sidebar(){
   return (
-   <div className="aside"> 
+   <aside> 
       <h2>
         <span id="toggleButton">&#8801;</span>
         <span id="heading">Dashboard</span>
       </h2>
 
-      <ul>
-        <li>
-          <span className="icon">&#x1f4ca;</span>
-          <a>Overview</a>
-        </li>
-        <li>
-          <span className="icon">&#x1f4ca;</span>
-          <a href="">Village Management</a>
-        </li>
-        <li>
-          <span className="icon">&#x1f4ca;</span>
-          <a href="">Chat</a>
-        </li>
-        <li>
-          <span className="icon">&#x1f4ca;</span>
-          <a href="">Gallery</a>
-        </li>
-      </ul>
+      <nav>
+        <ul>
+          <li>
+            <span className="icon">&#x1f4ca;</span>
+            <Link to="/">Overview</Link>
+          </li>
+          <li>
+            <span className="icon">&#x1f4ca;</span>
+            <Link to="/management">Management</Link>
+          </li>
+          <li>
+            <span className="icon">&#x1f4ca;</span>
+            <Link to="/chat">Chat</Link>
+          </li>
+          <li>
+            <span className="icon">&#x1f4ca;</span>
+            <Link to="/gallery">Gallery</Link>
+          </li>
+        </ul>
+      </nav>
 
       <div>
         <figure>
-          <img src="" alt="admin-image" />
+          <img src={AdminImage} alt="admin-image" />
           <figcaption>Admin name</figcaption>
         </figure>
         <button>Logout</button>
       </div>
-   </div>
+   </aside>
   )
 }
 
