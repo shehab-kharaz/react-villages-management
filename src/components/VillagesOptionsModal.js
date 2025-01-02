@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { useMutation } from "@apollo/client";
 import "../styles/modal.css";
-import { GET_VILLAGES, ADD_VILLAGE, UPDATE_VILLAGE } from "../queries/villageQueries";
+import { GET_VILLAGES, ADD_VILLAGE, UPDATE_VILLAGE, DELETE_VILLAGE } from "../queries/villageQueries";
 
 function VillagesOptionsModal({ isOpen, onClose, type, village }) {
   const [villageName, setVillageName] = useState('');
@@ -12,18 +12,6 @@ function VillagesOptionsModal({ isOpen, onClose, type, village }) {
   const [longitude, setLongitude] = useState('');
   const [image, setImage] = useState(null);
   const [categories, setCategories] = useState('');
-
-  useEffect(() => {
-    if (type === 'update' && village) {
-      setVillageName(village.name || '');
-      setRegion(village.region || '');
-      setLandArea(village.landArea ? village.landArea.toString() : '');
-      setLatitude(village.latitude ? village.latitude.toString() : '');
-      setLongitude(village.longitude ? village.longitude.toString() : '');
-      setCategories(village.categories.join(', ') || '');
-      setImage(village.image || null);
-    }
-  }, [type, village]);
 
   const [addVillage] = useMutation(ADD_VILLAGE, {
     update(cache, { data: { addVillage } }) {
@@ -41,6 +29,32 @@ function VillagesOptionsModal({ isOpen, onClose, type, village }) {
   const [updateVillage] = useMutation(UPDATE_VILLAGE, {
     onError: (error) => console.error("Error updating village:", error),
   });
+
+  const [deleteVillage] = useMutation(DELETE_VILLAGE, {
+    update(cache, { data: { deleteVillage } }) {
+      const existingVillages = cache.readQuery({ query: GET_VILLAGES });
+      const updatedVillages = existingVillages.villages.filter(
+        (village) => village.name !== deleteVillage.name
+      );
+      cache.writeQuery({
+        query: GET_VILLAGES,
+        data: { villages: updatedVillages },
+      });
+    },
+    onError: (error) => console.error("Error deleting village:", error),
+  });
+
+  useEffect(() => {
+    if (type === 'update' && village) {
+      setVillageName(village.name || '');
+      setRegion(village.region || '');
+      setLandArea(village.landArea ? village.landArea.toString() : '');
+      setLatitude(village.latitude ? village.latitude.toString() : '');
+      setLongitude(village.longitude ? village.longitude.toString() : '');
+      setCategories(village.categories.join(', ') || '');
+      setImage(village.image || null);
+    }
+  }, [type, village]);
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -94,6 +108,11 @@ function VillagesOptionsModal({ isOpen, onClose, type, village }) {
     onClose();
   };
 
+  const handleDelete = () => {
+    deleteVillage({ variables: { name: village.name } });
+    onClose();
+  };
+
   const resetForm = () => {
     setVillageName('');
     setRegion('');
@@ -108,13 +127,15 @@ function VillagesOptionsModal({ isOpen, onClose, type, village }) {
     <Modal 
       isOpen={isOpen} 
       onRequestClose={onClose} 
-      contentLabel= {type === 'view' ? 'View Village Details' : 'Add New Village'} 
+      contentLabel={type === 'view' ? 'View Village Details' : (type === 'delete' ? 'Delete Village Confirmation' : 'Add/Update Village')}
       className="modal" 
       overlayClassName="modal-overlay"
     >
       <div className="modal-header">
         <h2>
-          {type === 'update' ? 'Update Village' : (type === 'view' ? village.name : 'Add New Village')}
+          {type === 'update' ? 'Update Village' : 
+           (type === 'view' ? village.name : 
+           (type === 'delete' ? 'Confirm Deletion' : 'Add New Village'))}
         </h2>
         <button className="modal-close" onClick={onClose}>&#10006;</button>
       </div>
@@ -136,6 +157,8 @@ function VillagesOptionsModal({ isOpen, onClose, type, village }) {
               <p><strong>Categories:</strong> {village.categories.join(", ")}</p>
             </div>
           </>
+        ) : type === 'delete' ? (
+          <p>Are you sure you want to delete the village "{village.name}"?<br/>This action cannot be undone.</p>
         ) : (
           <>
             <label>
@@ -201,7 +224,11 @@ function VillagesOptionsModal({ isOpen, onClose, type, village }) {
         )}
       </div>
       <div className="modal-footer">
-        {type !== 'view' && (
+        {type === 'delete' ? (
+          <>
+            <button onClick={handleDelete}>Delete</button>
+          </>
+        ) : type !== 'view' && (
           <button onClick={handleSave}>{type === 'update' ? 'Update Village' : 'Add Village'}</button>
         )}
         <button onClick={onClose}>Cancel</button>

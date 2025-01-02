@@ -1,6 +1,6 @@
 import React from "react";
 
-function VillageList({ villages, onViewVillage, onUpdateVillage }) {
+function VillageList({ villages, onViewVillage, onUpdateVillage, onDeleteVillage }) {
   return (
     <div id="village-list-container">
       {villages.map((village) => (
@@ -21,10 +21,16 @@ function VillageList({ villages, onViewVillage, onUpdateVillage }) {
             </button>
             <button 
               className="update-village-btn"
-              onClick={() => onUpdateVillage(village)}>
+              onClick={() => onUpdateVillage(village)}
+            >
               Update Village
             </button>
-            <button className="delete-village-btn">Delete Village</button>
+            <button 
+              className="delete-village-btn"
+              onClick={() => onDeleteVillage(village)}
+            >
+              Delete Village
+            </button>
             <button className="demographic-btn">Update Demographic Data</button>
           </div>
         </div>

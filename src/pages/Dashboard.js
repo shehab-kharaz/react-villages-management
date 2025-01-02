@@ -1,8 +1,8 @@
 import "../styles/dashboard.css";
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
-import { GET_VILLAGES } from "../queries/villageQueries";
-import VillagesOptionsModal from "../components/VillagesOptionsModal"; 
+import { GET_VILLAGES  } from "../queries/villageQueries";
+import VillagesOptionsModal from "../components/VillagesOptionsModal";
 import VillageList from "../components/VillagesList";
 import { sortVillages, filterVillages, paginate } from "../utils/dashboardUtils";
 import NavigationControls from "../components/DashboardNavigationControl";
@@ -11,12 +11,12 @@ const ITEMS_PER_PAGE = 7;
 
 function Dashboard() {
   const [modalState, setModalState] = useState({ isOpen: false, type: '', village: null });
+ 
   const [sortOption, setSortOption] = useState("default");
   const [currentPage, setCurrentPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
 
   const { data, loading, error } = useQuery(GET_VILLAGES);
-
   const villages = data?.villages || [];
   const sortedVillages = sortVillages(villages, sortOption);
   const filteredVillages = filterVillages(sortedVillages, searchQuery);
@@ -34,6 +34,12 @@ function Dashboard() {
   };
 
   const closeModal = () => setModalState({ ...modalState, isOpen: false });
+
+  const openDeleteConfirmation = (village) => {
+    openModal('delete', village);
+  };
+
+ 
 
   if (loading) return <p>Loading villages...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -61,7 +67,8 @@ function Dashboard() {
         <VillageList 
           villages={paginatedVillages} 
           onViewVillage={(village) => openModal('view', village)} 
-          onUpdateVillage={(village) => openModal('update', village)}
+          onUpdateVillage={(village) => openModal('update', village)} 
+          onDeleteVillage={openDeleteConfirmation} 
         />
       </section>
 
@@ -71,8 +78,10 @@ function Dashboard() {
         type={modalState.type}
         village={modalState.village}
       />
+
     </main>
   );
 }
 
 export default Dashboard;
+
