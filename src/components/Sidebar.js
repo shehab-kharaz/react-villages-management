@@ -1,10 +1,14 @@
-import "../styles/sidebar.css"
-import AdminImage from '../images/admin-image.jpeg';
-import { Link } from "react-router-dom";
+import "../styles/sidebar.css";
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import AdminImage from "../images/admin-image.jpeg";
 
-function Sidebar(){
+function Sidebar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation(); 
+  
   return (
-   <aside> 
+    <aside>
       <h2>
         <span id="toggleButton">&#8801;</span>
         <span id="heading">Dashboard</span>
@@ -32,14 +36,22 @@ function Sidebar(){
       </nav>
 
       <div>
-        <figure>
-          <img src={AdminImage} alt="admin-image" />
-          <figcaption>Admin name</figcaption>
-        </figure>
-        <button>Logout</button>
+        {isLoggedIn ? (
+          <figure>
+            <img src={AdminImage} alt="admin" />
+            <figcaption>User Name</figcaption>
+            <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+          </figure>
+        ) : (
+          <button>
+            <Link to="/login" state={{ from: location.pathname }}>
+              Login
+            </Link>
+          </button>
+        )}
       </div>
-   </aside>
-  )
+    </aside>
+  );
 }
 
 export default Sidebar;

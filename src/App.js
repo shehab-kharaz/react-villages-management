@@ -11,14 +11,14 @@ function App() {
   return (
     <>  
       <Sidebar />
-          <Routes>
-            <Route path="/" element={<Overview />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/management" element={<Dashboard />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/gallery" element={<Gallery />} />
-          </Routes>
+      <Routes>
+        <Route path="/" element={<Overview />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/management" element={<Dashboard />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/gallery" element={<Gallery />} />
+      </Routes>
     </>
   );
 }

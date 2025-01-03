@@ -1,12 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "../styles/login.css"
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "../styles/login.css";
 
 function Signup() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const previousRoute = location.state?.from || "/"; 
+
   return (
     <div className="main-modal">
       <form>
-        <h3>Sign Up</h3>
+        <div className="header">
+          <h3>Sign Up</h3>
+          <button
+            type="button"
+            className="close-modal"
+            onClick={() => navigate(previousRoute)}
+          >
+            &times;
+          </button>
+        </div>
+
         <div>
           <label htmlFor="fullname">Full Name</label>
           <input
@@ -39,7 +53,8 @@ function Signup() {
 
         <button type="submit">Sign up</button>
         <p>
-          Already have an account? <Link to="/login">Sign up</Link>
+          Already have an account? 
+          <Link to="/login" state={{ from: location.state?.from || "/" }}> Log in</Link>
         </p>
       </form>
     </div>

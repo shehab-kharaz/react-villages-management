@@ -52,6 +52,8 @@ form button {
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
   color: #e4e7eb;
+  font-size: 1rem;
+  font-weight: bold;
 }
 form button:hover {
   background-color: #0766ff;
@@ -65,4 +67,22 @@ form p a:hover {
   color: #0060fa;
   cursor: pointer;
 }
+.header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.3rem;
+}
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.close-modal:hover {
+  background: none;
+  color: red;
+}
+
 
