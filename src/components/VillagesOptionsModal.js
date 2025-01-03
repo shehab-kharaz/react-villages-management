@@ -73,19 +73,19 @@ function VillagesOptionsModal({ isOpen, onClose, type, village }) {
       image: image ? URL.createObjectURL(image) : null,
       categories: categories.split(',').map(tag => tag.trim()),
       demographic: {
-        populationSize: 0,
+        populationSize: null,
         ageDistribution: {
-          age_0_18: 0,
-          age_19_35: 0,
-          age_36_50: 0,
-          age_51_65: 0,
-          age_65_plus: 0,
+          age_0_18: null,
+          age_19_35: null,
+          age_36_50: null,
+          age_51_65: null,
+          age_65_plus: null,
         },
         genderRatio: {
-          male: 0,
-          female: 0,
+          male: null,
+          female: null,
         },
-        populationGrowthRate: 0,
+        populationGrowthRate: null,
       },
     };
 
