@@ -1,12 +1,12 @@
-import "../styles/sidebar.css";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useAuth } from "../contexts/AuthenticationContext";
 import AdminImage from "../images/admin-image.jpeg";
+import "../styles/sidebar.css";
 
 function Sidebar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const location = useLocation(); 
-  
+  const { user, logout } = useAuth();
+  const location = useLocation();
+
   return (
     <aside>
       <h2>
@@ -36,17 +36,15 @@ function Sidebar() {
       </nav>
 
       <div>
-        {isLoggedIn ? (
+        {user ? (
           <figure>
             <img src={AdminImage} alt="admin" />
-            <figcaption>User Name</figcaption>
-            <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+            <figcaption>{user.fullName}</figcaption>
+            <button onClick={logout}>Logout</button>
           </figure>
         ) : (
           <button>
-            <Link to="/login" state={{ from: location.pathname }}>
-              Login
-            </Link>
+            <Link to="/login" state={{ from: location.pathname }}>Login</Link>
           </button>
         )}
       </div>

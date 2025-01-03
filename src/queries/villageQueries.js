@@ -173,3 +173,28 @@ export const UPDATE_DEMOGRAPHIC = gql`
     }
   }
 `;
+
+export const SIGNUP_MUTATION = gql`
+  mutation Signup($fullName: String!, $username: String!, $password: String!) {
+    signup(fullName: $fullName, username: $username, password: $password) {
+      fullName
+      username
+      role
+    }
+  }
+`;
+
+
+export const LOGIN_MUTATION = gql`
+  mutation Login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      token
+      user {
+        fullName
+        username
+        role
+      }
+    }
+  }
+`;
+
