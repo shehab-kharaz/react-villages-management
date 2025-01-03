@@ -1,6 +1,9 @@
 import React from "react";
+import { useAuth } from "../contexts/AuthenticationContext";  
 
 function VillageList({ villages, onViewVillage, onUpdateVillage, onDeleteVillage }) {
+  const { user } = useAuth(); 
+
   return (
     <div id="village-list-container">
       {villages.map((village) => (
@@ -19,19 +22,26 @@ function VillageList({ villages, onViewVillage, onUpdateVillage, onDeleteVillage
             >
               View
             </button>
-            <button 
-              className="update-village-btn"
-              onClick={() => onUpdateVillage(village)}
-            >
-              Update Village
-            </button>
-            <button 
-              className="delete-village-btn"
-              onClick={() => onDeleteVillage(village)}
-            >
-              Delete Village
-            </button>
-            <button className="demographic-btn">Update Demographic Data</button>
+
+            {user?.role === "admin" && (
+              <>
+                <button
+                  className="update-village-btn"
+                  onClick={() => onUpdateVillage(village)}
+                >
+                  Update Village
+                </button>
+                <button
+                  className="delete-village-btn"
+                  onClick={() => onDeleteVillage(village)}
+                >
+                  Delete Village
+                </button>
+                <button className="demographic-btn">
+                  Update Demographic Data
+                </button>
+              </>
+            )}
           </div>
         </div>
       ))}

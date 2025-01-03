@@ -2,6 +2,7 @@ import client from './apolloClient';
 import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthenticationContext";
+import ProtectedRoute from "./components/ProtectedRoute.js";
 import Sidebar from "./components/Sidebar";
 import Login from "./components/LoginForm";
 import Signup from "./components/SignupForm";
@@ -21,7 +22,14 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/management" element={<Dashboard />} />
-            <Route path="/chat" element={<Chat />} />
+            <Route 
+              path="/chat" 
+              element={
+                <ProtectedRoute>
+                  <Chat />
+                </ProtectedRoute>
+              } 
+            />
             <Route path="/gallery" element={<Gallery />} />
           </Routes>
         </Router>

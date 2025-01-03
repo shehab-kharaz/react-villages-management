@@ -6,10 +6,12 @@ import VillagesOptionsModal from "../components/VillagesOptionsModal";
 import VillageList from "../components/VillagesList";
 import { sortVillages, filterVillages, paginate } from "../utils/dashboardUtils";
 import NavigationControls from "../components/DashboardNavigationControl";
+import { useAuth } from "../contexts/AuthenticationContext";
 
 const ITEMS_PER_PAGE = 7;
 
 function Dashboard() {
+  const { user } = useAuth(); 
   const [modalState, setModalState] = useState({ isOpen: false, type: '', village: null });
  
   const [sortOption, setSortOption] = useState("default");
@@ -46,9 +48,14 @@ function Dashboard() {
 
   return (
     <main>
-      <button className="add-new-village-btn" onClick={() => openModal('add')}>
+
+      {user?.role === "admin" &&
+      (
+        <button className="add-new-village-btn" onClick={() => openModal('add')}>
         Add new village
-      </button>
+        </button>
+      )}
+      
       <section>
         <h3>Village List</h3>
         <input

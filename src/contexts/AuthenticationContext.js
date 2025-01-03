@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-
 const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
@@ -26,8 +25,10 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
   };
 
+  const isAuthenticated = !!user;
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, isAuthenticated}}>
       {children}
     </AuthContext.Provider>
   );
