@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import PieChartComponent from "../components/PieChart";
 import BarChartComponent from "../components/BarChart";
 import { GET_STATISTICS } from "../queries/villageQueries"
+import MapComponent from "../components/MainComponents/MapComponent";
 
 
 function Overview() {
@@ -26,8 +27,11 @@ function Overview() {
     <main>
       <h1>Overview</h1>
       <div className="map-container">
-        <div id="map"></div>
+      <div 
+        id="map">
+        <MapComponent />
       </div>
+    </div>
 
       <div className="info-container">
         <div className="info-box" id="village-count">

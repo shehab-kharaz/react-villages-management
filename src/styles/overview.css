@@ -8,9 +8,9 @@ main h1 {
   grid-area: heading;
 }
 main .map-container {
-  height: 400px;
+  height: 500px;
   background-color: #1f2937;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 main .info-container {
   display: grid;
@@ -65,4 +65,9 @@ main .charts-container .chart-box h2 {
 }
 main .charts-container .chart-box:nth-child(3) {
   flex: 1 1 100%;
+}
+
+#map {
+  width: 100%;
+  border-radius: 0.5rem
 }

@@ -198,3 +198,13 @@ export const LOGIN_MUTATION = gql`
   }
 `;
 
+export const GET_MAP_VILLAGES = gql`
+  query GetMapVillages {
+    mapVillages {
+      name
+      latitude
+      longitude
+    }
+  }
+`;
+
