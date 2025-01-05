@@ -1,12 +1,12 @@
 import "../styles/dashboard.css";
-import React, { useState } from "react";
+import { useAuth } from "../contexts/AuthenticationContext";
 import { useQuery } from "@apollo/client";
 import { GET_VILLAGES  } from "../queries/villageQueries";
-import VillagesOptionsModal from "../components/VillagesOptionsModal";
-import VillageList from "../components/VillagesList";
 import { sortVillages, filterVillages, paginate } from "../utils/dashboardUtils";
-import NavigationControls from "../components/DashboardNavigationControl";
-import { useAuth } from "../contexts/AuthenticationContext";
+import React, { useState } from "react";
+import VillagesOptionsModal from "../components/MainComponents/VillagesOptionsModal";
+import VillageList from "../components/MainComponents/VillagesList";
+import NavigationControls from "../components/MainComponents/DashboardNavigationControl";
 
 const ITEMS_PER_PAGE = 7;
 
@@ -41,21 +41,20 @@ function Dashboard() {
     openModal('delete', village);
   };
 
- 
-
   if (loading) return <p>Loading villages...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
     <main>
-
-      {user?.role === "admin" &&
-      (
-        <button className="add-new-village-btn" onClick={() => openModal('add')}>
-        Add new village
-        </button>
-      )}
-      
+      {
+        user?.role === "admin" &&
+        (
+          <button className="add-new-village-btn" 
+          onClick={() => openModal('add')}>
+          Add new village
+          </button>
+        )
+      }
       <section>
         <h3>Village List</h3>
         <input
@@ -76,6 +75,7 @@ function Dashboard() {
           onViewVillage={(village) => openModal('view', village)} 
           onUpdateVillage={(village) => openModal('update', village)} 
           onDeleteVillage={openDeleteConfirmation} 
+          onUpdateDemographic={(village) => openModal('update-demographic', village)}
         />
       </section>
 
@@ -85,7 +85,6 @@ function Dashboard() {
         type={modalState.type}
         village={modalState.village}
       />
-
     </main>
   );
 }

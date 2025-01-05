@@ -12,7 +12,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
+  min-width: 480px;
   padding: 20px;
   border-radius: 8px;
   background-color: #2d3748;
@@ -65,16 +65,32 @@
   font-size: 1rem;
 }
 
+input::placeholder {
+  white-space: normal;
+}
+
 .village-image {
+  max-width: 100%; 
+  height: auto;
+}
+
+.village-image img {
   width: 100%;
   height: auto;
   border-radius: 8px;
+  max-width: 550px; 
+  object-fit: cover;
 }
 
 .village-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  display: grid; 
+  grid-template-columns: 150px auto;
+  row-gap: 8px; 
+  align-items: start;
+}
+
+.modal-header {
+  font-size: 1.2rem;
 }
 
 .modal-footer {
@@ -94,8 +110,27 @@
   margin: 5px;
   transition: background-color 0.2s ease;
 }
-
 .modal-footer button:hover {
   background-color: #566580;
   cursor: pointer;
+}
+
+.modal-footer .delete-confirmation {
+  background-color: rgb(240, 57, 57);
+}
+.modal-footer .delete-confirmation:hover {
+  background-color: rgb(247, 29, 29);
+}
+
+.modal-footer .add-update-btn {
+  background-color: #3c82f6;
+}
+.modal-footer .add-update-btn:hover {
+  background-color: #0766ff;
+}
+
+@media (max-width: 480px){
+  .modal {
+    min-width: 300px;
+  }
 }

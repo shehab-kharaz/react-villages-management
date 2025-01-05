@@ -152,26 +152,26 @@ export const DELETE_VILLAGE = gql`
 `;
 
 export const UPDATE_DEMOGRAPHIC = gql`
-  mutation UpdateVillage($name: String!, $village: VillageInput!) {
-    updateVillage(name: $name, village: $village) {
-      name
-      demographic {
-        populationSize
-        ageDistribution {
-          age_0_18
-          age_19_35
-          age_36_50
-          age_51_65
-          age_65_plus
-        }
-        genderRatio {
-          male
-          female
-        }
-        populationGrowthRate
+ mutation updateVillageDemographic($name: String!, $village: VillageInput!) {
+    updateVillageDemographic(name: $name, village: $village) {
+    name
+    demographic {
+      populationSize
+      ageDistribution {
+        age_0_18
+        age_19_35
+        age_36_50
+        age_51_65
+        age_65_plus
       }
+      genderRatio {
+        male
+        female
+      }
+      populationGrowthRate
     }
   }
+}
 `;
 
 export const SIGNUP_MUTATION = gql`

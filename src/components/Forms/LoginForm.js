@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { LOGIN_MUTATION } from "../queries/villageQueries";
-import { useAuth } from "../contexts/AuthenticationContext"; 
-import "../styles/login.css";
+import { LOGIN_MUTATION } from "../../queries/villageQueries";
+import { useAuth } from "../../contexts/AuthenticationContext"; 
+import "../../styles/login.css";
 
 function Login() {
   const [username, setUsername] = useState("");

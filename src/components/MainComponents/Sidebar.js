@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "../contexts/AuthenticationContext";
-import AdminImage from "../images/admin-image.jpeg";
-import "../styles/sidebar.css";
+import { useAuth } from "../../contexts/AuthenticationContext";
+import AdminImage from "../../images/admin-image.jpeg";
+import "../../styles/sidebar.css";
 
 function Sidebar() {
   const { user, logout } = useAuth();

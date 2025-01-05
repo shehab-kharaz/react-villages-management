@@ -1,7 +1,7 @@
 import React from "react";
-import { useAuth } from "../contexts/AuthenticationContext";  
+import { useAuth } from "../../contexts/AuthenticationContext";  
 
-function VillageList({ villages, onViewVillage, onUpdateVillage, onDeleteVillage }) {
+function VillageList({ villages, onViewVillage, onUpdateVillage, onDeleteVillage, onUpdateDemographic }) {
   const { user } = useAuth(); 
 
   return (
@@ -37,7 +37,10 @@ function VillageList({ villages, onViewVillage, onUpdateVillage, onDeleteVillage
                 >
                   Delete Village
                 </button>
-                <button className="demographic-btn">
+                <button
+                  className="demographic-btn"
+                  onClick={() => onUpdateDemographic(village)}
+                >
                   Update Demographic Data
                 </button>
               </>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { SIGNUP_MUTATION } from "../queries/villageQueries";
-import "../styles/login.css";
+import { SIGNUP_MUTATION } from "../../queries/villageQueries";
+import "../../styles/login.css";
 
 function Signup() {
   const [fullName, setFullName] = useState("");
