@@ -1,21 +1,40 @@
-import Sidebar from './components/Sidebar';
-import Overview from './pages/Overview';
-import Dashboard from './pages/Dashboard';
-import Chat from './pages/Chat';
-import Gallery from './pages/Gallery';
-import { Route, Routes } from 'react-router-dom';
+import client from './apolloClient';
+import { ApolloProvider } from '@apollo/client';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthenticationContext";
+import ProtectedRoute from "./components/MainComponents/ProtectedRoute.js";
+import Sidebar from "./components/MainComponents/Sidebar";
+import Login from "./components/Forms/LoginForm.js";
+import Signup from "./components/Forms/SignupForm";
+import Overview from "./pages/Overview";
+import Dashboard from "./pages/Dashboard";
+import Gallery from "./pages/Gallery";
+import Chat from "./pages/Chat";
 
 function App() {
   return (
-    <>  
-      <Sidebar />
-      <Routes>
-        <Route path="/" element={<Overview />} />
-        <Route path="/management" element={<Dashboard />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/gallery" element={<Gallery />} />
-      </Routes>
-    </>
+    <ApolloProvider client={client}>
+      <AuthProvider>
+        <Router>
+          <Sidebar />
+          <Routes>
+            <Route path="/" element={<Overview />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/management" element={<Dashboard />} />
+            <Route 
+              path="/chat" 
+              element={
+                <ProtectedRoute>
+                  <Chat />
+                </ProtectedRoute>
+              } 
+            />
+            <Route path="/gallery" element={<Gallery />} />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </ApolloProvider>
   );
 }
 

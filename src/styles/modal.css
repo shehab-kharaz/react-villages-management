@@ -1,44 +1,136 @@
-.modal-backdrop {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
 }
 
-.modal-content {
-  background: white;
-  padding: 1.5em;
-  border-radius: 5px;
-  width: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative;
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 480px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #2d3748;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.1rem;
+  color: #e0e3e7;
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1em;
-}
+  }
 
 .modal-close {
   background: none;
   border: none;
-  font-size: 18px;
+  color: inherit;
+  font-size: 1.2rem;
   cursor: pointer;
+  padding: 0;
+}
+
+.modal-close:hover {
+  color: #e7ebf0;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .modal-body label {
-  display: block;
-  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.modal-body input {
+  background-color: #374151;
+  border: 1px solid #4e5866;
+  padding: 0.8rem 0.5rem;
+  border-radius: 5px;
+  color: inherit;
+  font-size: 1rem;
+}
+
+input::placeholder {
+  white-space: normal;
+}
+
+.village-image {
+  max-width: 100%; 
+  height: auto;
+}
+
+.village-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  max-width: 550px; 
+  object-fit: cover;
+}
+
+.village-details {
+  display: grid; 
+  grid-template-columns: 150px auto;
+  row-gap: 8px; 
+  align-items: start;
+}
+
+.modal-header {
+  font-size: 1.2rem;
 }
 
 .modal-footer {
-  text-align: right;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modal-footer button {
+  background-color: #4a5568;
+  padding: 0.6rem 0.7rem;
+  border-radius: 8px;
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 5px;
+  transition: background-color 0.2s ease;
+}
+.modal-footer button:hover {
+  background-color: #566580;
+  cursor: pointer;
+}
+
+.modal-footer .delete-confirmation {
+  background-color: rgb(240, 57, 57);
+}
+.modal-footer .delete-confirmation:hover {
+  background-color: rgb(247, 29, 29);
+}
+
+.modal-footer .add-update-btn {
+  background-color: #3c82f6;
+}
+.modal-footer .add-update-btn:hover {
+  background-color: #0766ff;
+}
+
+@media (max-width: 480px){
+  .modal {
+    min-width: 300px;
+  }
 }

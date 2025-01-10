@@ -1,33 +1,10 @@
 import "../styles/overview.css";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import PieChartComponent from "../components/PieChart";
 import BarChartComponent from "../components/BarChart";
+import { GET_STATISTICS } from "../queries/villageQueries"
+import MapComponent from "../components/MainComponents/MapComponent";
 
-const GET_STATISTICS = gql`
-  query GetStatistics {
-    statistics {
-      totalVillages
-      totalUrbanAreas
-      totalPopulation
-      averageLandAreaInSqKm
-      ageDistribution {
-        age_0_18
-        age_19_35
-        age_36_50
-        age_51_65
-        age_65_plus
-      }
-      genderRatio {
-        male
-        female
-      }
-      populationDistribution {
-        name
-        population
-      }
-    }
-  }
-`;
 
 function Overview() {
   const { loading, error, data } = useQuery(GET_STATISTICS);
@@ -50,8 +27,11 @@ function Overview() {
     <main>
       <h1>Overview</h1>
       <div className="map-container">
-        <div id="map"></div>
+      <div 
+        id="map">
+        <MapComponent />
       </div>
+    </div>
 
       <div className="info-container">
         <div className="info-box" id="village-count">

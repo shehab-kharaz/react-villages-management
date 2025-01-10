@@ -1,3 +1,4 @@
+
 main {
   display: flex;
   flex-direction: column;
@@ -19,7 +20,6 @@ main input:focus {
   outline: none;
 }
 main > div:first-of-type {
-  background-color: #1f2937;
   padding: 0.8rem;
   border-radius: 0.5rem;
 }
@@ -51,3 +51,37 @@ main .available-admins figure figcaption {
   overflow: hidden;
 }
 
+.available-users-container {
+  background-color: #1f2937;
+  display: flex;
+  flex-direction: column;
+}
+
+.available-users-list {
+  gap: 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: color 100ms ease-in-out;
+}
+
+.user-container:hover{
+  color: #9498a0;;
+  cursor: pointer;
+}
+
+.user-container img {
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-container span{
+  font-size: 1.2rem;
+}

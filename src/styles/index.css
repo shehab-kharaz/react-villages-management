@@ -31,17 +31,18 @@ main {
   grid-area: main;
 }
 
-@media (max-width: 768px) {
-  #root {
-    grid-template-columns: 75px 1fr;
-    grid-template-areas: "sidebar main";
-  }
 
-  aside {
-    display: flex;
-    align-items: center;
-    width: 75px;
-  }
-  
+main div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
+
+.collapsed-aside{
+  display: flex;
+  align-items: center;
+  width: 75px;
+}
+
+
 

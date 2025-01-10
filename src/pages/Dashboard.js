@@ -1,35 +1,24 @@
 import "../styles/dashboard.css";
-import React, { useState } from "react";
-import { useQuery, useMutation } from "@apollo/client";
-import { GET_VILLAGES, ADD_VILLAGE } from "../queries/villageQueries";
-import AddVillageModal from "../components/AddVillageModal";
-import VillageList from "../components/VillagesList";
+import { useAuth } from "../contexts/AuthenticationContext";
+import { useQuery } from "@apollo/client";
+import { GET_VILLAGES  } from "../queries/villageQueries";
 import { sortVillages, filterVillages, paginate } from "../utils/dashboardUtils";
-import NavigationControls from "../components/DashboardNavigationControl";
+import React, { useState } from "react";
+import VillagesOptionsModal from "../components/MainComponents/VillagesOptionsModal";
+import VillageList from "../components/MainComponents/VillagesList";
+import NavigationControls from "../components/MainComponents/DashboardNavigationControl";
 
 const ITEMS_PER_PAGE = 7;
 
 function Dashboard() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user } = useAuth(); 
+  const [modalState, setModalState] = useState({ isOpen: false, type: '', village: null });
+ 
   const [sortOption, setSortOption] = useState("default");
   const [currentPage, setCurrentPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
 
   const { data, loading, error } = useQuery(GET_VILLAGES);
-
-  const [addVillage] = useMutation(ADD_VILLAGE, {
-    update(cache, { data: { addVillage } }) {
-      const existingVillages = cache.readQuery({ query: GET_VILLAGES });
-      cache.writeQuery({
-        query: GET_VILLAGES,
-        data: {
-          villages: [...existingVillages.villages, addVillage],
-        },
-      });
-    },
-    onError: (error) => console.error("Error adding village:", error),
-  });
-
   const villages = data?.villages || [];
   const sortedVillages = sortVillages(villages, sortOption);
   const filteredVillages = filterVillages(sortedVillages, searchQuery);
@@ -41,16 +30,31 @@ function Dashboard() {
     setSearchQuery(e.target.value);
     setCurrentPage(0);
   };
-  const handleSaveVillage = (newVillage) => addVillage({ variables: { village: newVillage } });
+
+  const openModal = (type, village = null) => {
+    setModalState({ isOpen: true, type, village });
+  };
+
+  const closeModal = () => setModalState({ ...modalState, isOpen: false });
+
+  const openDeleteConfirmation = (village) => {
+    openModal('delete', village);
+  };
 
   if (loading) return <p>Loading villages...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
     <main>
-      <button className="add-new-village-btn" onClick={() => setIsModalOpen(true)}>
-        Add new village
-      </button>
+      {
+        user?.role === "admin" &&
+        (
+          <button className="add-new-village-btn" 
+          onClick={() => openModal('add')}>
+          Add New Village
+          </button>
+        )
+      }
       <section>
         <h3>Village List</h3>
         <input
@@ -66,11 +70,24 @@ function Dashboard() {
           totalPages={totalPages}
           setCurrentPage={setCurrentPage}
         />
-        <VillageList villages={paginatedVillages} />
+        <VillageList 
+          villages={paginatedVillages} 
+          onViewVillage={(village) => openModal('view', village)} 
+          onUpdateVillage={(village) => openModal('update', village)} 
+          onDeleteVillage={openDeleteConfirmation} 
+          onUpdateDemographic={(village) => openModal('update-demographic', village)}
+        />
       </section>
-      {isModalOpen && <AddVillageModal onClose={() => setIsModalOpen(false)} onSave={handleSaveVillage} />}
+
+      <VillagesOptionsModal
+        isOpen={modalState.isOpen}
+        onClose={closeModal}
+        type={modalState.type}
+        village={modalState.village}
+      />
     </main>
   );
 }
 
 export default Dashboard;
+

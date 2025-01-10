@@ -3,11 +3,13 @@ import React from "react";
 function NavigationControls({ sortOption, handleSortChange, currentPage, totalPages, setCurrentPage }) {
   return (
     <div className="villages-sort">
-      <label htmlFor="sort-by">Sort by:</label>
-      <select name="sort-by-drop-down" id="sort-by" value={sortOption} onChange={handleSortChange}>
-        <option value="default">Default</option>
-        <option value="alphabetical">Alphabetical</option>
-      </select>
+      <div>
+        <label htmlFor="sort-by">Sort by:</label>
+        <select name="sort-by-drop-down" id="sort-by" value={sortOption} onChange={handleSortChange}>
+          <option value="default">Default</option>
+          <option value="alphabetical">Alphabetical</option>
+        </select>
+      </div>
       <div>
         <span>Page:</span>
         <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 0}>
