@@ -1,36 +1,56 @@
-import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthenticationContext";
+import { Link } from "react-router-dom";
 import AdminImage from "../../images/admin-image.jpeg";
 import "../../styles/sidebar.css";
 
 function Sidebar() {
   const { user, logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const handleToggle = () => {
+    setIsCollapsed((prevState) => !prevState);
+    const rootElement = document.getElementById("root");
+    if (rootElement) {
+      if (!isCollapsed) {
+        rootElement.style.gridTemplateColumns = "75px 1fr";
+        rootElement.style.gridTemplateAreas = `"sidebar main"`;
+      } else {
+        rootElement.style.gridTemplateColumns = "250px 1fr";
+        rootElement.style.gridTemplateAreas = `"sidebar main"`;
+      }
+    }
+  };
 
   return (
-    <aside>
+    <aside className={isCollapsed ? "collapsed-aside" : ""}>
       <h2>
-        <span id="toggleButton">&#8801;</span>
+        <span id="toggleButton" onClick={handleToggle}>
+          &#8801;
+        </span>
         <span id="heading">Dashboard</span>
       </h2>
 
       <nav>
         <ul>
-          <li>
+          <li onClick={() => navigate("/")}>
             <span className="icon">&#x1f4ca;</span>
-            <Link to="/">Overview</Link>
+            <span id="page-name">Overview</span>
           </li>
-          <li>
-            <span className="icon">&#x1f4ca;</span>
-            <Link to="/management">Management</Link>
+          <li onClick={() => navigate("/management")}>
+            <span className="icon">&#128203;</span>
+            <span id="page-name">Management</span>
           </li>
-          <li>
-            <span className="icon">&#x1f4ca;</span>
-            <Link to="/chat">Chat</Link>
+          <li onClick={() => navigate("/chat")}>
+            <span className="icon">&#128172;</span>
+            <span id="page-name">Chat</span>
           </li>
-          <li>
-            <span className="icon">&#x1f4ca;</span>
-            <Link to="/gallery">Gallery</Link>
+          <li onClick={() => navigate("/gallery")}>
+            <span className="icon">&#127748; </span>
+            <span id="page-name">Gallery</span>
           </li>
         </ul>
       </nav>
@@ -44,7 +64,9 @@ function Sidebar() {
           </figure>
         ) : (
           <button>
-            <Link to="/login" state={{ from: location.pathname }}>Login</Link>
+            <Link to="/login" state={{ from: location.pathname }}>
+              Login
+            </Link>
           </button>
         )}
       </div>

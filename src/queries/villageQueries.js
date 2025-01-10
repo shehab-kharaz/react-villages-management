@@ -208,3 +208,23 @@ export const GET_MAP_VILLAGES = gql`
   }
 `;
 
+export const GET_IMAGES = gql`
+  query GetImages {
+    images {
+      url
+      id
+      description
+    }
+  }
+`;
+
+
+export const ADD_IMAGE = gql`
+  mutation AddImage($url: String!, $description: String!) {
+    addImage(url: $url, description: $description) {
+      id
+      url
+      description
+    }
+  }
+`;

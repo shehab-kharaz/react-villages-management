@@ -21,6 +21,7 @@ aside h2 #toggleButton {
   font-size: 2.6rem;
 }
 aside nav {
+  font-size: 1.3rem;
   margin-bottom: auto;
   list-style: none;
 }
@@ -31,10 +32,6 @@ aside nav ul li {
 aside nav ul li span {
   margin-right: 0.7rem;
 }
-aside nav ul li a {
-  text-decoration: none;
-  color: inherit;
-}
 aside nav ul li:hover {
   background-color: #2d3748;
   cursor: pointer;
@@ -43,9 +40,6 @@ body aside div {
   display: flex;
   align-items: center;
   padding: 1rem;
-}
-body aside div button{
-  width: 100%;
 }
 body aside div button a{
   width: 100%;
@@ -57,6 +51,12 @@ body aside div button a{
   color: #e4e7eb;
   font-size: 1rem;
   font-weight: bold;
+  transition: all 400ms ease-out;
+}
+
+
+body aside div button a:hover{
+  background-color: #166af0;
 }
 body aside div figure {
   display: flex;
@@ -71,6 +71,7 @@ body aside div figure img {
   border-radius: 50%;
 }
 body aside div button {
+  width: 100%;
   border: none;
   background-color: #1f2937;
   font-size: 1rem;
@@ -84,11 +85,27 @@ body main {
   grid-area: main;
   padding: 1rem;
 }
-@media (max-width: 768px) {
-  aside #heading,
-  aside ul li a,
-  aside div figure figcaption,
-  aside div button {
-    display: none;
-  }
+aside #heading,
+aside ul li #page-name,
+aside div figure figcaption{
+  display: flexbox;
 }
+.collapsed-aside #heading,
+.collapsed-aside ul li #page-name,
+.collapsed-aside div figure figcaption
+{
+  display: none; 
+}
+.collapsed-aside div button a{
+  padding: 0.3rem 0.7rem;
+  font-size: 0.9rem;
+}
+aside.collapsed-aside nav ul li {
+  width: 75px;
+ }
+ aside.collapsed-aside h2 #toggleButton{
+   margin: 0;
+ }
+ aside.collapsed-aside div figure button{
+   display: none;
+ }

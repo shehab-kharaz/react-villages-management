@@ -71,3 +71,21 @@ main .charts-container .chart-box:nth-child(3) {
   width: 100%;
   border-radius: 0.5rem
 }
+
+@media (max-width: 768px) {
+  main {
+    grid-template-rows: auto auto auto;  
+  }
+
+  main .map-container {
+    height: 300px; 
+  }
+
+  main .info-container {
+    grid-template-columns: 1fr; 
+  }
+
+  main .charts-container .chart-box {
+    flex: 1 1 100%; 
+  }
+}
