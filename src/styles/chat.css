@@ -20,7 +20,6 @@ main input:focus {
   outline: none;
 }
 main > div:first-of-type {
-  background-color: #1f2937;
   padding: 0.8rem;
   border-radius: 0.5rem;
 }
@@ -53,20 +52,19 @@ main .available-admins figure figcaption {
 }
 
 .available-users-container {
-  border: 1px solid red;
+  background-color: #1f2937;
   display: flex;
   flex-direction: column;
 }
 
 .available-users-list {
   gap: 0.7rem;
-  border: 1px solid red;
   display: flex;
   flex-wrap: wrap;
+  padding: 0 1rem;
 }
 
 .user-container {
-  border: 1px solid yellow;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,7 +74,6 @@ main .available-admins figure figcaption {
 .user-container:hover{
   color: #9498a0;;
   cursor: pointer;
-
 }
 
 .user-container img {
@@ -85,3 +82,6 @@ main .available-admins figure figcaption {
   border-radius: 50%;
 }
 
+.user-container span{
+  font-size: 1.2rem;
+}

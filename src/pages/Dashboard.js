@@ -51,7 +51,7 @@ function Dashboard() {
         (
           <button className="add-new-village-btn" 
           onClick={() => openModal('add')}>
-          Add new village
+          Add New Village
           </button>
         )
       }

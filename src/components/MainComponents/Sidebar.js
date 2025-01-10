@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthenticationContext";
 import { Link } from "react-router-dom";
-import AdminImage from "../../images/admin-image.jpeg";
 import "../../styles/sidebar.css";
 
 function Sidebar() {
+  const imgSrc = "https://via.placeholder.com/50x50.png?text=Image";
   const { user, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -58,7 +58,7 @@ function Sidebar() {
       <div>
         {user ? (
           <figure>
-            <img src={AdminImage} alt="admin" />
+            <img src={imgSrc} alt="admin" />
             <figcaption>{user.fullName}</figcaption>
             <button onClick={logout}>Logout</button>
           </figure>
